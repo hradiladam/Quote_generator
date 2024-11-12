@@ -1,11 +1,12 @@
 // Array with selected quotes
+
 const quoteSelection = [
     `Richard Feynman (Physicist): “The first principle is that you must not fool yourself, and you are the easiest person to fool.”`,
     `Maya Angelou (Poet and Activist):“Do the best you can until you know better. Then when you know better, do better.”`,
     `Socrates (Philosopher): “The only true wisdom is in knowing you know nothing.”`,
     `Oscar Wilde (Playwright and Poet): “Be yourself; everyone else is already taken.”`,
     `Heraclitus (Philosopher): “No man ever steps in the same river twice, for it's not the same river and he's not the same man.”`,
-    `Richard Feynman: “I would rather have questions that can't be answered than answers that can't be questioned.”`,
+    `Richard Feynman(Physicist): “I would rather have questions that can't be answered than answers that can't be questioned.”`,
     `Neil Degrasse Tyson (Astrophysicist): “We are stardust brought to life, then empowered by the universe to figure itself out — and we have only just begun.”`,
     `George Bernard Shaw (Playwright): “Life isn't about finding yourself. Life is about creating yourself.”`,
     `Rober Downey Jr. (Actor): "Listen, smile, agree and than do whatever the fuck you were going to do anyway."`,
@@ -15,11 +16,25 @@ const quoteSelection = [
     `James Baldwin (Writer and Activist): “Not everything that is faced can be changed, but nothing can be changed until it is faced.”`,
 ];
 
+
+
 // Random quote generator
-const generateQuote = (arrayOfQuotes) => {
-    let randomNum = Math.floor(Math.random() * arrayOfQuotes.length);
-    return arrayOfQuotes[randomNum];
+
+let lastQuote
+
+const generateQuote = () => {
+    let randomNum;
+    let newQuote;
+    
+    do {
+        randomNum = Math.floor(Math.random() * quoteSelection.length);
+        newQuote = quoteSelection[randomNum];
+    } while (newQuote === lastQuote);
+
+    document.getElementById('quote-display').innerText = newQuote;
+    lastQuote = newQuote
 };
 
-console.log(generateQuote(quoteSelection));
+
+document.getElementById('generate-quote-button').addEventListener('click', generateQuote);
 
